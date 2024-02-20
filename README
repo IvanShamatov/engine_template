@@ -1,0 +1,6 @@
+# Engine Template
+
+It is supposed to be a game engine template for future development. I'm following (not strictly) https://www.youtube.com/playlist?list=PL_xRyXins848nDj2v-TJYahzvs-XW9sVV COMP 4300 lectures in the videos.
+Looks like I'm missing something, but hopefully future lectures will disclose all the missunderstandings I have now
+
+Note: There is no solutions for assignments and it is also written in Ruby + Raylib, not C++ and SFML
