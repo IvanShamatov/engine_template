@@ -6,28 +6,35 @@ class CollisionSystem
   end
 
   def call
-    @em.all.each do |e|
-      case e.tag
-      when :rectangle
-        if e.transform.pos.x <= 0 || e.transform.pos.x >= WINDOW_WIDTH - e.bbox.size.x
-          e.transform.vel.x *= -1
-        end
-
-        if e.transform.pos.y <= 0 || e.transform.pos.y >= WINDOW_HEIGHT - e.bbox.size.y
-          e.transform.vel.y *= -1
-        end
-      when :circle
-        if e.transform.pos.x <= e.bbox.size.x || e.transform.pos.x >= WINDOW_WIDTH - e.bbox.size.x
-          e.transform.vel.x *= -1
-        end
-
-        if e.transform.pos.y <= e.bbox.size.x || e.transform.pos.y >= WINDOW_HEIGHT - e.bbox.size.x
-          e.transform.vel.y *= -1
-        end
+    @em.by_tag(:circle)&.each do |e|
+      if e.transform.pos.x <= e.bbox.size.x || e.transform.pos.x >= WINDOW_WIDTH - e.bbox.size.x
+        e.transform.vel.x *= -1
       end
 
-      @em.all.each do |other|
+      if e.transform.pos.y <= e.bbox.size.x || e.transform.pos.y >= WINDOW_HEIGHT - e.bbox.size.x
+        e.transform.vel.y *= -1
+      end
+
+      # @em.by_tag(:circle).each do |other|
+      #   next if other.id == e.id
+      #   if e.transform.pos.sqrdist(other.transform.pos) <= (e.bbox.size.x + other.bbox.size.x)**2
+      #     balls_collide(e, other)
+      #   end
+      # end
+    end
+
+    @em.by_tag(:rectangle)&.each do |e|
+      if e.transform.pos.x <= 0 || e.transform.pos.x >= WINDOW_WIDTH - e.bbox.size.x
+        e.transform.vel.x *= -1
+      end
+
+      if e.transform.pos.y <= 0 || e.transform.pos.y >= WINDOW_HEIGHT - e.bbox.size.y
+        e.transform.vel.y *= -1
+      end
+
+      @em.by_tag(:rectangle).each do |other|
         next if other.id == e.id
+        e.tranform.pos => x1, y1
         if e.transform.pos.sqrdist(other.transform.pos) <= (e.bbox.size.x + other.bbox.size.x)**2
           balls_collide(e, other)
         end

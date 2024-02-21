@@ -7,18 +7,18 @@ require_relative 'systems/render_system'
 class Game
   def setup
     @manager = EntityManager.new
-    # 5.times do |i|
-    #   size = Vec[rand(300), rand(300)]
-    #   pos = Vec[rand(WINDOW_WIDTH-size.x), rand(WINDOW_HEIGHT-size.y)]
-    #   vel = Vec[rand(10)-10, rand(10)-10]
-    #   @manager.add(:rectangle)
-    #           .with_name("Rectangle #{i}")
-    #           .with_transform(pos, vel)
-    #           .with_bounding_box(pos, size)
-    #           .with_color([RED, GREEN, BLUE, YELLOW, GOLD, GRAY, DARKBLUE, DARKGREEN].sample)
-    # end
+    5.times do |i|
+      size = Vec[rand(300), rand(300)]
+      pos = Vec[rand(WINDOW_WIDTH-size.x), rand(WINDOW_HEIGHT-size.y)]
+      vel = Vec[rand(10)-10, rand(10)-10]
+      @manager.add(:rectangle)
+              .with_name("Rectangle #{i}")
+              .with_transform(pos, vel)
+              .with_bounding_box(pos, size)
+              .with_color([RED, GREEN, BLUE, YELLOW, GOLD, GRAY, DARKBLUE, DARKGREEN].sample)
+    end
 
-    10.times do |i|
+    20.times do |i|
       size = Vec[rand(50), 0]
       pos = Vec[rand(WINDOW_WIDTH-2*size.x)+size.x, rand(WINDOW_HEIGHT-2*size.x)+size.x]
       vel = Vec[rand(10)-10, rand(10)-10]

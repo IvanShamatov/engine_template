@@ -17,6 +17,10 @@ class Vec
     new(x, y)
   end
 
+  def deconstruct
+    [x, y]
+  end
+
   def to_s
     "<Vec:#{object_id} (#{x}, #{y})>"
   end
